@@ -50,20 +50,19 @@ class Editar extends StatelessWidget {
                   labelText: "Especie",
                 ),
               ),
-              SizedBox(
-                  height:
-                      20), // Agrega espacio entre los TextFormFields y el botón
+              SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     // Realiza la actualización del animal sin modificar los campos final
                     Animal updatedAnimal = Animal(
-                      id: animal.id, // Asegura que el ID se mantenga
+                      id: animal.id,
                       nombre: nombreController.text,
                       especie: especieController.text,
                     );
 
-                    if (animal.id != null && animal.id! > 0) {
+                    // animal.id no puede ser null, por lo tanto, podemos simplificar la lógica.
+                    if (animal.id > 0) {
                       DB.update(updatedAnimal);
                     } else {
                       DB.insert(updatedAnimal);
